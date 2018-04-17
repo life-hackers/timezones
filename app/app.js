@@ -14,8 +14,8 @@ export class App extends Tag {
         const now = DateTime.local()
         const utc = now.toUTC()
         return [
-            { value: now.valueOf(), zone: now.zoneName },
-            { value: utc.valueOf(), zone: utc.zoneName }
+            { value: now, zone: now.zoneName },
+            { value: utc, zone: utc.zoneName }
         ]
     }
 }

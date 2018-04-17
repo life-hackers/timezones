@@ -1,6 +1,6 @@
-time-list
-    div(each='{ time, i in list }')
-        | { i } - { time.value } [{time.zone}]
+time-list(class='{ css.host }')
+    time-box(each='{ time, i in list }' time='{ time }')
     script.
+        import './time-box.pug'
         import { TimeList } from './time-list'
         new TimeList(this, opts)

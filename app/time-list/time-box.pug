@@ -1,0 +1,11 @@
+time-box(class='{ css.host }')
+    div(class='{ css.date }')
+        | { str.date }
+    div(class='{ css.time }')
+        | { str.time }
+    div(class='{ css.ext }')
+    div(class='{ css.zone }')
+        | { str.zone }
+    script.
+        import { TimeBox } from './time-box'
+        new TimeBox(this, opts)
