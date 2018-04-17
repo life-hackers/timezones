@@ -14,7 +14,7 @@ function envPlugins(o) {
     if (dev) {
         htmlOpts = {
             minify: false,
-            chunks: ['app'],
+            chunks: ['app', 'vendors'],
             template: '!!pug-loader!index.pug'
         }
     } else {
@@ -55,6 +55,17 @@ module.exports = (env, args) => ({
         publicPath: '/',
         filename: '[id].js'
     },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
+    },
     plugins: [
         ...envPlugins(args)
     ],
@@ -94,11 +105,17 @@ module.exports = (env, args) => ({
             }],
             enforce: 'pre'
         }, {
-            test: /\.sass$/,
+            test: /app\/index\.sass$/,
             exclude: /node_modules/,
             use: [
                 MiniCssExtractPlugin.loader,
                 'css-loader', 'sass-loader'
+            ]
+        }, {
+            test: /\.sass$/,
+            exclude: /node_modules|app\/index\.sass$/,
+            use: [
+                'css-object-loader', 'sass-loader'
             ]
         }, {
             test: /\.js$/,

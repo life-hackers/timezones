@@ -1,14 +1,21 @@
-export class App {
+import { Tag } from '../lib'
+import css from './app.sass'
+
+import { DateTime } from 'luxon'
+
+export class App extends Tag {
     constructor(tag) {
+        super(tag, css)
         tag.zone = Intl.DateTimeFormat().resolvedOptions().timeZone
-        this.updateNow(tag)
-        setInterval(() => {
-            this.updateNow(tag)
-        }, 10 * 1000)
+        tag.timeList = this.timeList()
     }
 
-    updateNow(tag) {
-        tag.now = (new Date()).getTime()
-        tag.update()
+    timeList() {
+        const now = DateTime.local()
+        const utc = now.toUTC()
+        return [
+            { value: now.valueOf(), zone: now.zoneName },
+            { value: utc.valueOf(), zone: utc.zoneName }
+        ]
     }
 }

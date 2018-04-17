@@ -15,10 +15,13 @@
     "build:app": "webpack -p --config webpack.config.js",
     "serve": "webpack-dev-server --inline --watch --hot --colors -d",
     "build": "npm run cleanup; npm run build:app",
-    "dev": "npm run serve -- --port 5678"
+    "dev": "npm run serve -- --port 9000"
   },
   "dependencies": {
-    "riot": "^3.9.1"
+    "luxon": "^1.0.0",
+    "normalize.css": "^8.0.0",
+    "riot": "^3.9.1",
+    "styletron-engine-atomic": "^1.0.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -27,6 +30,7 @@
     "babel-preset-es2015-riot": "^1.1.0",
     "chai": "^4.1.2",
     "css-loader": "^0.28.11",
+    "css-object-loader": "0.0.7",
     "eslint": "^4.19.1",
     "eslint-config-riot": "^1.0.0",
     "eslint-friendly-formatter": "^4.0.0",

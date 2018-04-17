@@ -1,9 +1,8 @@
 app
-    h1
+    h1(class='{ css.tick }')
         | Timezones
-    p
-        | { zone }
-        | { now }
+    time-list(list='{ timeList }')
     script.
+        import './time-list/time-list.pug'
         import { App } from './app'
         new App(this)

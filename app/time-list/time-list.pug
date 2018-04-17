@@ -1,0 +1,6 @@
+time-list
+    div(each='{ time, i in list }')
+        | { i } - { time.value } [{time.zone}]
+    script.
+        import { TimeList } from './time-list'
+        new TimeList(this, opts)
