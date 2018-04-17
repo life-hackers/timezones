@@ -2,7 +2,9 @@ app
     h1(class='{ css.tick }')
         | Timezones
     time-list(list='{ timeList }')
+    zone-input
     script.
+        import './zone-input/zone-input.pug'
         import './time-list/time-list.pug'
         import { App } from './app'
         new App(this)
