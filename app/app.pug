@@ -1,10 +1,11 @@
-app
-    h1(class='{ css.tick }')
+app(class='{ css.host }')
+    h1(class='{ css.title }')
         | Timezones
-    time-list(list='{ timeList }')
-    zone-input
+    div(class='{ css.wrap }')
+        timezones-input(on-select='{ addTimezone }')
+        time-list(list='{ times }')
     script.
-        import './zone-input/zone-input.pug'
+        import './timezones/input.pug'
         import './time-list/time-list.pug'
         import { App } from './app'
         new App(this)

@@ -1,0 +1,12 @@
+timezones-list(class='{ css.host }')
+    div(each='{ tz, i in list }' )
+        div(each='{ tu in tz.utc }' class='{ css.item }'
+            onclick='{ itemClick(tz, tu) }')
+            | { chopUtc(tz.text) }
+            | ({ tz.abbr })
+            div { tu }
+    div(if='{ list.length === 0 }')
+        | Not found
+    script.
+        import { List } from './list'
+        new List(this, opts)

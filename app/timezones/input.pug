@@ -1,0 +1,10 @@
+timezones-input(class='{ css.host }')
+    input(type='text' class='{ css.input }'
+        value='{ search }' keyup='{ onKeyup }'
+        placeholder='Add timezone')
+    timezones-list(list='{ ftzs }' if='{ search }'
+        on-select='{ onSelect }')
+    script.
+        import './list.pug'
+        import { Input } from './input'
+        new Input(this, opts)

@@ -1,21 +1,26 @@
 import { Tag } from '../lib'
 import css from './app.sass'
 
-import { DateTime } from 'luxon'
+import { WatchList } from './watch-list'
+
+const watchList = new WatchList()
 
 export class App extends Tag {
     constructor(tag) {
         super(tag, css)
-        tag.zone = Intl.DateTimeFormat().resolvedOptions().timeZone
-        tag.timeList = this.timeList()
+        tag.addTimezone = this.addTimezone.bind(tag)
+        this.updateTimes(tag)
+        setInterval(this.updateTimes.bind(this, tag), 10 * 1000)
     }
 
-    timeList() {
-        const now = DateTime.local()
-        const utc = now.toUTC()
-        return [
-            { value: now, zone: now.zoneName },
-            { value: utc, zone: utc.zoneName }
-        ]
+    updateTimes(tag) {
+        tag.times = watchList.times
+        tag.update()
+    }
+
+    addTimezone(tz, zone) {
+        watchList.add(zone)
+        this.times = watchList.times
+        this.update()
     }
 }
