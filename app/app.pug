@@ -3,7 +3,7 @@ app(class='{ css.host }')
         | Timezones
     div(class='{ css.wrap }')
         timezones-input(on-select='{ addTimezone }')
-        time-list(list='{ times }')
+        time-list(list='{ times }' on-event='{ listEvent }')
     script.
         import './timezones/input.pug'
         import './time-list/time-list.pug'

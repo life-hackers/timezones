@@ -9,8 +9,15 @@ export class App extends Tag {
     constructor(tag) {
         super(tag, css)
         tag.addTimezone = this.addTimezone.bind(tag)
+        tag.listEvent = this.listEventHandler.bind(tag)
         this.updateTimes(tag)
-        setInterval(this.updateTimes.bind(this, tag), 10 * 1000)
+    }
+
+    listEventHandler(act, data) {
+        if (act === 'remove') {
+            watchList.remove(data)
+            this.update()
+        }
     }
 
     updateTimes(tag) {
@@ -20,7 +27,6 @@ export class App extends Tag {
 
     addTimezone(tz, zone) {
         watchList.add(zone)
-        this.times = watchList.times
         this.update()
     }
 }
