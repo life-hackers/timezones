@@ -1,0 +1,7 @@
+item-ctrl(class='{ css.host }')
+    input(type='datetime-local' value='{ datetime }' onchange='{ changeDate }')
+    button(class='{ css.rmbtn }' onclick='{ remove }') Remove
+    button(class='{ css.rmbtn }' onclick='{ dismiss }') Dismiss
+    script.
+        import { ItemCtrl } from './item-ctrl'
+        new ItemCtrl(this, opts)

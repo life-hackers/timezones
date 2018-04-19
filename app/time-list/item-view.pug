@@ -1,0 +1,13 @@
+item-view(class='{ css.host }')
+    div(class='{ css.date }')
+        | { str.date }
+    div(class='{ css.time }')
+        | { str.time }
+    div(class='{ css.time }')
+        | { str.z }
+    div(class='{ css.ext }')
+    div(class='{ css.zone }')
+        | { str.zone }
+    script.
+        import { ItemView } from './item-view'
+        new ItemView(this, opts)

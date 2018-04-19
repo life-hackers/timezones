@@ -3,6 +3,8 @@ import css from './time-list.sass'
 
 import { DateTime } from 'luxon'
 
+let at = 'now'
+
 export class TimeList extends Tag {
     constructor(tag, opts) {
         super(tag, css)
@@ -14,6 +16,11 @@ export class TimeList extends Tag {
 
     itemEvent(act, data) {
         this.opts.onEvent(act, data)
+        if (act === 'at-changed') {
+            at = data
+            this.at = at === 'now' ? DateTime.local() : data
+            this.update()
+        }
     }
 
     update() {
@@ -21,7 +28,9 @@ export class TimeList extends Tag {
     }
 
     renewAt(tag) {
-        tag.now = DateTime.local()
+        if (at === 'now') {
+            tag.at = DateTime.local()
+        }
         tag.update()
         setTimeout(() => {
             this.renewAt(tag)

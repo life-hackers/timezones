@@ -1,8 +1,8 @@
 time-list(class='{ css.host }')
-    time-box(each='{ time, i in list }'
+    time-item(each='{ time, i in list }'
         on-event='{ itemEvent }'
-        time='{ time }' at='{ now }')
+        time='{ time }' at='{ at }')
     script.
-        import './time-box.pug'
+        import './time-item.pug'
         import { TimeList } from './time-list'
         new TimeList(this, opts)

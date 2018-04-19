@@ -1,0 +1,8 @@
+time-item(class='{ css.host }')
+    item-ctrl(time='{ time }' at='{ opts.at }' ref='ctrl' if='{ showCtrl }')
+    item-view(time='{ time }' at='{ opts.at }' onclick='{ removable }')
+    script.
+        import './item-ctrl.pug'
+        import './item-view.pug'
+        import { TimeItem } from './time-item'
+        new TimeItem(this, opts)
