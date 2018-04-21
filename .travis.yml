@@ -5,6 +5,9 @@ install:
   - npm i
 before_script:
   - npm run build
+cache:
+    directories:
+      - node_modules
 deploy:
   skip-cleanup: true
   keep-history: true
