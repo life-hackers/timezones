@@ -1,62 +1,28 @@
+const webpack = require('./webpack.config')('development', {
+    mode: 'development'
+});
+webpack.entry = null;
+webpack.mode = 'development';
+
 module.exports = function(config) {
     config.set({
         basePath: '',
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['mocha', 'riot'],
-        files: [{
+        frameworks: ['mocha'], //'riot'],
+        files: [
+            {
                 pattern: 'node_modules/chai/chai.js',
                 watched: false
-            }, {
-                pattern: 'node_modules/riot/riot+compiler.js',
-                watched: false
-            }, {
-                pattern: 'test/**/*.js'
-                    // watched: false
             },
-            'app/**/*.pug',
-            'app/**/*.spec.js'
-        ],
-        exclude: [
-            'app/**/*.sass'
+            'app/**/*.js'
         ],
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'app/**/*.pug': ['riot', 'babel'],
-            'app/**/*.spec.js': ['babel'],
-            'test/**/*.js': ['babel'],
+            'app/**/*.js': ['webpack', 'sourcemap'],
         },
-        riotPreprocessor: {
-            options: {
-                type: 'es6',
-                template: 'pug',
-                parsers: {
-                    html: {
-                        pug: (html, opts, url) => require('pug').compile(html),
-                    },
-                    css: {
-                        sass: (tagName, css, opts, url) => require('node-sass').compile(css),
-                    },
-                }
-            }
-        },
-        babelPreprocessor: {
-            options: {
-                presets: ['es2015-riot'],
-                plugins: [
-                    // resolve require, export, import ...
-                    'transform-es2015-modules-umd'
-                ],
-                sourceMap: 'inline'
-            },
-            filename: function(file) {
-                return file.originalPath.replace(/\.js$/, '-es5.js');
-            },
-            sourceFileName: function(file) {
-                return file.originalPath;
-            }
-        },
+        webpack: webpack,
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
