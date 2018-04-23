@@ -52,7 +52,7 @@ module.exports = (env, args) => ({
         hashDigest: 'hex',
         hashDigestLength: 8,
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/',
+        publicPath: isDev(args) ? '/' : '/timezones',
         filename: '[id].js'
     },
     optimization: {
