@@ -1,26 +1,31 @@
-const webpack = require('./webpack.config')('development', {
+const webpack = require('./webpack.config')({}, {
     mode: 'development'
-});
-webpack.entry = null;
-webpack.mode = 'development';
+})
+// https://github.com/webpack-contrib/karma-webpack/issues/24
+webpack.optimization = {};
+webpack.entry = null
+webpack.mode = 'development'
 
 module.exports = function(config) {
     config.set({
         basePath: '',
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['mocha'], //'riot'],
+        frameworks: ['mocha'],
         files: [
             {
                 pattern: 'node_modules/chai/chai.js',
                 watched: false
             },
-            'app/**/*.js'
+            'app/**/*.spec.js'
         ],
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'app/**/*.js': ['webpack', 'sourcemap'],
+            'app/**/*.spec.js': ['webpack', 'sourcemap']
+        },
+        webpackMiddleware: {
+            noInfo: true
         },
         webpack: webpack,
         // test results reporter to use

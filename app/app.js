@@ -3,8 +3,6 @@ import css from './app.sass'
 
 import { WatchList } from './watch-list'
 
-console.log(Tag)
-console.log('waa', WatchList)
 const watchList = new WatchList()
 
 export class App extends Tag {
