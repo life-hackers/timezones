@@ -6,7 +6,7 @@ describe('<app></app>', function() {
         it('should render properly', function() {
             injectHTML('<app></app>')
             const tag = mount('app')
-            expect(tag.opts).to.eql({})
+            expect(tag.opts).to.eql({ dataIs: 'app' })
         })
     })
 })

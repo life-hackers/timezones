@@ -1,8 +1,8 @@
 import Riot from 'riot'
 export const riot = Riot
 
-export function mount(tag) {
-    const [rtag] = riot.mount(tag)
+export function mount(tag, opts = {}) {
+    const [rtag] = riot.mount('body', tag, opts)
     return rtag
 }
 

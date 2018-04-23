@@ -20,6 +20,7 @@ function bmount() {
     let { at, time: { zone } } = this.opts
     at = at.setZone(zone)
     this.at = at
+    if (!at) { return }
     this.datetime = at.toFormat(fmt.date)
 }
 
